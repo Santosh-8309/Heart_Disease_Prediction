@@ -3,41 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
+    <title>Welcome Doctor</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #000000;
-            color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
-            text-align: center;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center; /* Aligns the container to the left */
+            align-items: center;
+            background-size: cover ;
+            background-image:url('https://img.freepik.com/premium-photo/medical-background-illustration_1282306-1144.jpg?semt=ais_hybrid');
+            background-position: center;
+            background-repeat: no-repeat;
+
+    
         }
+        .container {
+            background-color: ;
+            padding: 2em;
+            border-radius: 10px;
+]        }
         h2 {
-            font-size: 3em;
-            margin-bottom: 0.5em;
             color: #2c3e50;
+            margin-bottom: 1em;
         }
         p {
             font-size: 1.2em;
-            margin: 0;
             color: #34495e;
+            margin-bottom: 2em;
         }
-        .container {
-            background-color: #ffffff;
-            padding: 2em;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        .btn-group {
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 0 10px;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Welcome!</h2>
+        <h2>Welcome DOCTOR!</h2>
         <p>You have successfully logged in.</p>
+
+        <!-- Buttons for Register and History -->
+        <div class="btn-group">
+            <a href="{% url 'patient_entry' %}" class="btn">Register</a>  <!-- Link to Register page -->
+            <a href="{% url 'history' %}" class="btn">History</a>
+    <!-- Link to History page -->
+        </div>
     </div>
 </body>
 </html>

@@ -4,6 +4,10 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from .models import UserProfile
+from .models import Patient
+from .forms import PatientForm
+from django.http import HttpResponse
+import csv
 # Create your views here.
 def home(request):
     return render(request, 'home.html')
@@ -28,6 +32,10 @@ def register(request):
 def successfully_registered(request):
     return render(request, "users/successfully_registered.html")
 
+
+def patient_entry(request):
+    return render(request, 'users/patient_entry.html')
+
 def login_view(request):  #dont name "login" bcoz django already have build-in log in function"
     if request.method == 'POST':
         form = AuthenticationForm(data=request.POST)
@@ -47,3 +55,18 @@ def login_view(request):  #dont name "login" bcoz django already have build-in l
 def successfully_logged_in(request):
     return render(request, 'users/successfully_logged_in.html')
 
+def patient_entry(request):
+    if request.method == 'POST':
+        form = PatientForm(request.POST)
+        if form.is_valid():
+            form.save()  # Save form data to the database
+            return redirect('history')  # Redirect to history after saving
+    else:
+        form = PatientForm()
+    
+    return render(request, 'users/patient_entry.html', {'form': form})
+
+# View for displaying the history of all registered patients
+def history(request):
+    patients = Patient.objects.all()  # Query to get all registered patients
+    return render(request, 'users/history.html', {'patients': patients})
